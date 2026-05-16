@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: offline-convo-e2e
+    runtime: python
+    repo: https://github.com/YOUR_USERNAME/YOUR_REPO  # Replace with your repo URL
+    plan: free
+    region: oregon
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --workers 2 --threads 4 --timeout 120
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: PORT
+        value: 10000
+    healthCheckPath: /health
+    autoDeploy: true
